@@ -74,6 +74,24 @@ console.log(i--);
 // I.e. it will print 10, then 20, then 30, etc. 
 // Write this loop in all 3 ways -- as a 'while', 'do while', and 'for' loop.
 
+var i = 0, result = "" ;
+while (i < 100) {
+  i += 10;
+  result += i + " ";
+}
+console.log(result);
+
+var i = 0, result = "" ;
+do {
+  i += 10;
+  result += i + " ";
+} while (i < 100);
+console.log(result);
+
+for (i = 0; i <= 100; i+=10) {
+    console.log(i);
+    }
+
 
 // Exercise 7. Add a comment as to why the following loop is an infinite loop (will 
 // run without ever stopping). Then fix the loop so that it stops when
@@ -85,9 +103,28 @@ while (counterFour < 2) {
     counterFour--;
 }
 
+There is no set condition to be reached that will terminate the loop once reached. We can fix that with a break.
+
+let counterFour = 1;
+while (counterFour < 2) {
+    console.log('HELP ME!');
+    counterFour--;
+if (counterFour === -100) {
+    console.log("Loop ends here.");
+    break;
+  }
+}
+
 
 // Exercise 8. Make a variable that contains your favorite integer. Write a loop 
 // (your choice which type) that prints the integers from 0 to that number.
+
+var = 27 , result = "" ;
+while (i < 27) {
+  i += 1;
+  result += i + " ";
+}
+
 
 
 // Exercise 9. Make a variable that contains your favorite integer (this time make sure it's 
