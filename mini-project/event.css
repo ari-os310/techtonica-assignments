@@ -1,0 +1,13 @@
+
+
+h1 {
+    background-color: aqua;
+    border-right: 20em solid white;
+    margin-bottom: 0em;
+}
+
+ul{
+    background-color: rgba(39, 210, 210, 0.2);
+    border-right: 40em solid white;
+    margin-top: 0em;
+}
