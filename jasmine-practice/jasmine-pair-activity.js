@@ -28,5 +28,9 @@ var object = {
     }
     return invertedObj;
   };
-  invert(object);
-  console.log(invert(object)); 
+  // invert(object);
+  // console.log(invert(object)); 
+  // let a = invert;
+  // console.log(a);
+  // console.log(a());
+  module.exports = invert;
