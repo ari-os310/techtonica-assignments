@@ -1,22 +1,22 @@
 describe("EventRecommender", () => {
-    const { EventRecommender, User, Event } = require('../YourFilenameHere.js'); // Update with your class names and file name
+    const { EventRecommender, User, Event } = require('../eventonica-classes.js'); // Update with your class names and file name
     let er; 
-  
+    
     beforeEach(() => {
       er = new EventRecommender();
     });
   
     describe("addEvent", () => {
       it("adds a new Event to the system", () => {
-        er.addEvent("Change Me");
+        er.addEvent("Emo Fantasy", "2020-2-20", "Music", 022);
         expect(er.events.length).toEqual(1);
-        expect(er.events[0].title).toEqual("Change Me"); // what are some other things you can test?
+        expect(er.events[0].title).toEqual("Emo Fantasy"); // what are some other things you can test?
       });
     });
   
     describe("addUser", () => {
       it("adds a new User to the system", () => {
-        er.addUser("Change Me");
+        er.addUser("Assata", 888);
         expect(er.user.length).toEqual(1);
       });
     });
