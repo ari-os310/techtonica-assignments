@@ -2,11 +2,12 @@ $(document).ready( () => {
     const eventRecommender = new EventRecommender(); 
     // Your code here
     // Default Users
-    eventRecommender.addUser();
+    eventRecommender.addUser("XELA", "323");
     
     // Default Events
     eventRecommender.addEvent();
 
+    // NavBar usability
     let mainNav = document.getElementById('js-menu');
     let navBarToggle = document.getElementById('js-navbar-toggle');
     
@@ -14,4 +15,7 @@ $(document).ready( () => {
       mainNav.classList.toggle('active');
     });
 
+    // $("#delete-event input[type='submit']").click(function(e) {
+    //     //this is to prevent the page from reloading
+    //     e.preventDefault();
 });
