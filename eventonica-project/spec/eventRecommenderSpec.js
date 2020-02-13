@@ -10,38 +10,41 @@ describe("EventRecommender", () => {
       it("adds a new Event to the system", () => {
         er.addEvent("Emo Fantasy", "2020-2-20", "Music", 022);
         expect(er.events.length).toEqual(1);
-        expect(er.events[0].title).toEqual("Emo Fantasy"); // what are some other things you can test?
+        expect(er.events[0].name).toEqual("Emo Fantasy"); // what are some other things you can test?
       });
     });
-  
+    
     describe("addUser", () => {
       it("adds a new User to the system", () => {
         er.addUser("Assata", 888);
-        expect(er.user.length).toEqual(1);
+        expect(er.users.length).toEqual(1);
+        // expect(er.user[0].name).toEqual("Assata");
       });
     });
   
     describe("saveUserEvent", () => {
       it("adds an event to a user's personal event array", () => {
-        er.addEvent("Make a new event");
-        er.addUser("Make a new user");
-        er.saveUserEvent("event", "user"); // change these to match your method signature
-        expect(er.user.personalEvents.length).toEqual(1);
+        er.addEvent("Emo Fantasy", "2020-2-20", "Music", 022);
+        er.addUser("Assata");
+        er.saveUserEvent("Emo Fantasy", "Assata"); // change these to match your method signature
+        expect(er.users[0].name).toEqual("Assata");
+        expect(er.users[0].personalEvents.length).toEqual(1);
+        expect(er.users[0].personalEvents[0].name).toEqual("Emo Fantasy");
       });
     });
   
     describe("deleteUser", () => {
       it("removes a User from the system", () => {
-        er.addUser("Make a new user here that you will delete later");
-        er.deleteUser("Change Me");
-        expect(er.user.length).toEqual(0);
+        er.addUser("Assata", 888);
+        er.deleteUser("Assata", 888);
+        expect(er.users.length).toEqual(0);
       });
     });
-  
+    
     describe("deleteEvent", () => {
       it("removes the event from the system", () => {
-        er.addEvent("A new event that you will delete later");
-        er.deleteEvent("Change Me");
+        er.addEvent("Emo Fantasy", "2020-2-20", "Music", 022);
+        er.deleteEvent("Emo Fantasy", "2020-2-20", "Music", 022);
         expect(er.events.length).toEqual(0);
       });
     });
