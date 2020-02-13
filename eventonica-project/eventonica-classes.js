@@ -37,7 +37,8 @@ class EventRecommender {
     saveUserEvent(userId, event){
     // Allow users to save events to a personal Events array.
         let user = this.findUserById(userId);
-        user.personalEvents.push(event);
+        let events = this.findUserEvent(event);
+        user.personalEvents.push(events);
     }
     
 
@@ -55,8 +56,8 @@ class EventRecommender {
         return this.users.find((user) => user.id === userId);
     }
 
-    findUserByEvent(){
-        return this.users.find((user) => user.id === userId);
+    findUserEvent(eventName){
+        return this.events.find((event) => event.name === eventName);
     }
 
     findEventsByDate(date){
