@@ -34,33 +34,39 @@ class EventRecommender {
         this.users.push(new User(name, id));
     }
 
-    saveUserEvent(user, event){
+    saveUserEvent(userId, event){
     // Allow users to save events to a personal Events array.
+        let user = this.findUserById(userId);
         user.personalEvents.push(event);
     }
+    
 
     deleteUser(userId) {
     // Deletes a User from the system
-        this.users.splice(this.users.indexOf(userId), 1);
+        this.users.splice(this.findUserById(userId), 1);
     }
    
     deleteEvent(eventId) {
     // Deletes the Event from the system
         this.users.splice(this.events.indexOf(eventId), 1);
     }
+    
+    findUserById (userId) {
+        return this.users.find((user) => user.id === userId);
+    }
+
+    findUserByEvent(){
+        return this.users.find((user) => user.id === userId);
+    }
 
     findEventsByDate(date){
     // Returns all events on a given date
-        return this.events.filter(function (event){
-            return event.date === date;
-        });
-    }
+        return this.events.filter((event) => event.date === date);
+        }
     
-    findEventsbyCategory(category){
+    findEventsByCategory(category){
     // Returns all events in a given category
-        return this.events.filter(function (categories){
-            return categories.category === category;
-        });
+        return this.events.filter((categories) => categories.category === category);
     }
 }
 

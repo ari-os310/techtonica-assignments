@@ -24,9 +24,9 @@ describe("EventRecommender", () => {
   
     describe("saveUserEvent", () => {
       it("adds an event to a user's personal event array", () => {
+        er.addUser("Assata", 888);
         er.addEvent("Emo Fantasy", "2020-2-20", "Music", 022);
-        er.addUser("Assata");
-        er.saveUserEvent("Emo Fantasy", "Assata"); // change these to match your method signature
+        er.saveUserEvent(888, "Emo Fantasy"); // change these to match your method signature
         expect(er.users[0].name).toEqual("Assata");
         expect(er.users[0].personalEvents.length).toEqual(1);
         expect(er.users[0].personalEvents[0].name).toEqual("Emo Fantasy");
