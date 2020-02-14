@@ -24,8 +24,9 @@ $(document).ready( () => {
 
     function displayEvents() {
       let defaultEvent = "";
-      for (let event of eventRecommender.events) {
-        defaultEvent += `<li>${event.name}</li>`;
+        for (let event of eventRecommender.events) {
+          defaultEvent += `<li>${event.name + " | " + event.category + 
+          " | " + event.date + " | " + event.id}</li>`;
       }
       $("#all-events").html(defaultEvent);
   }
@@ -33,7 +34,7 @@ $(document).ready( () => {
 
                       // Adding Users & Events
 // Users
-$("#add-user").submit(function(event) {
+$("#add-user").submit((event) => {
     event.preventDefault();
       let id = $("#add-user-id").val();
       let name = $("#add-user-name").val();
@@ -41,15 +42,15 @@ $("#add-user").submit(function(event) {
           displayUsers();
 $("#add-user").trigger("reset");
     });
-
+ 
 // Events
-$("#add-event").submit(function(event) {
+$("#add-event").submit((event) => {
   event.preventDefault();
     let id = $("#add-event-id").val();
     let name = $("#add-event-name").val();
     let date = $("#add-event-date").val();
     let category = $("#add-event-category").val();
-  eventRecommender.addEvent(id, name, date, category);
+  eventRecommender.addEvent(name, date, category, id);
     displayEvents();
   $("#add-event").trigger("reset");
 });
