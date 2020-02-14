@@ -9,7 +9,7 @@ $(document).ready( () => {
                         // Default Events
     eventRecommender.addEvent("Emo Fantasy", "2020-2-20", "Music", 022);
 
-                        // display Users
+                        // display Users && Events
             displayUsers();
             
     function displayUsers() {
@@ -20,7 +20,19 @@ $(document).ready( () => {
       $("#all-users").html(defaultUser);
     }
 
-                      // Add a User--submit 
+            displayEvents();
+
+    function displayEvents() {
+      let defaultEvent = "";
+      for (let event of eventRecommender.events) {
+        defaultEvent += `<li>${event.name}</li>`;
+      }
+      $("#all-events").html(defaultEvent);
+  }
+  
+
+                      // Adding Users & Events
+// Users
 $("#add-user").submit(function(event) {
     event.preventDefault();
       let id = $("#add-user-id").val();
@@ -30,7 +42,18 @@ $("#add-user").submit(function(event) {
 $("#add-user").trigger("reset");
     });
 
-                    // Add Event
+// Events
+$("#add-event").submit(function(event) {
+  event.preventDefault();
+    let id = $("#add-event-id").val();
+    let name = $("#add-event-name").val();
+    let date = $("#add-event-date").val();
+    let category = $("#add-event-category").val();
+  eventRecommender.addEvent(id, name, date, category);
+    displayEvents();
+  $("#add-event").trigger("reset");
+});
+
 
 
                       // NavBar usability
