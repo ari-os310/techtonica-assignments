@@ -11,7 +11,7 @@ $(document).ready( () => {
 
                         // display Users
             displayUsers();
-  
+            
     function displayUsers() {
       let defaultUser = "";
         for (let user of eventRecommender.users) {
@@ -19,6 +19,19 @@ $(document).ready( () => {
       }
       $("#all-users").html(defaultUser);
     }
+
+                      // Add a User--submit 
+$("#add-user").submit(function(event) {
+    event.preventDefault();
+      let id = $("#add-user-id").val();
+      let name = $("#add-user-name").val();
+       eventRecommender.addUser(name, id);
+          displayUsers();
+$("#add-user").trigger("reset");
+    });
+
+                    // Add Event
+
 
                       // NavBar usability
     let mainNav = document.getElementById('js-menu');
