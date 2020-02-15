@@ -1,20 +1,20 @@
 $(document).ready( () => {
-    const eventRecommender = new EventRecommender(); 
+    const er = new EventRecommender(); 
     // Your code here
                           // Default Users
-    eventRecommender.addUser("XELA", 323);
-    eventRecommender.addUser("Nkiru", 515);
-    eventRecommender.addUser("RGBM", 333);
+    er.addUser("XELA", 323);
+    er.addUser("Nkiru", 515);
+    er.addUser("RGBM", 333);
     
                         // Default Events
-    eventRecommender.addEvent("Emo Fantasy", "2020-2-20", "Music", 022);
+    er.addEvent("Emo Fantasy", "2020-2-20", "Music", 022);
 
                         // display Users && Events
             displayUsers();
             
     function displayUsers() {
       let defaultUser = "";
-        for (let user of eventRecommender.users) {
+        for (let user of er.users) {
           defaultUser += `<li>${user.name}</li>`;
       }
       $("#all-users").html(defaultUser);
@@ -24,7 +24,7 @@ $(document).ready( () => {
 
     function displayEvents() {
       let defaultEvent = "";
-        for (let event of eventRecommender.events) {
+        for (let event of er.events) {
           defaultEvent += `<li>${event.name}  |   ${event.category} 
            |  ${event.date}  |   ${event.id}</li>`;
       }
@@ -38,27 +38,46 @@ $("#add-user").submit((event) => {
     event.preventDefault();
       let id = $("#add-user-id").val();
       let name = $("#add-user-name").val();
-       eventRecommender.addUser(name, id);
+    er.addUser(name, id);
           displayUsers();
 $("#add-user").trigger("reset");
     });
  
 // Events
 $("#add-event").submit((event) => {
-  event.preventDefault();
-    let id = $("#add-event-id").val();
-    let name = $("#add-event-name").val();
-    let date = $("#add-event-date").val();
-    let category = $("#add-event-category").val();
-  eventRecommender.addEvent(name, date, category, id);
+    event.preventDefault();
+      let id = $("#add-event-id").val();
+      let name = $("#add-event-name").val();
+      let date = $("#add-event-date").val();
+      let category = $("#add-event-category").val();
+    er.addEvent(name, date, category, id);
     displayEvents();
   $("#add-event").trigger("reset");
 });
 
                           // Delete Users & Events
 // Users
+$("#delete-user").submit((event) => {
+  event.preventDefault();
+    let userId = $("#delete-user-id").val();
+      er.deleteUser(userId);
+  
+  displayUsers();
+    $("#delete-user").trigger("reset");
+});
 
 // Events
+$("#delete-event").submit((event) => {
+  event.preventDefault();
+    let eventId = $("#delete-event-id").val();
+      er.deleteEvent(eventId);
+  
+  displayEvents();
+    $("#delete-event").trigger("reset");
+});
+
+                          // SEARCH && SAVE 
+
 
                       // NavBar usability
     let mainNav = document.getElementById('js-menu');

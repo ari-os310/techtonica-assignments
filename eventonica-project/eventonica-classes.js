@@ -26,7 +26,8 @@ class EventRecommender {
 
     addEvent(name, date, category, id) {
     // Adds a new Event to the System
-        this.events.push(new Event(name, date, category, id));
+        let formatDate = new Date (date);
+        this.events.push(new Event(name, formatDate, category.toUpperCase(), id));
     }
 
     addUser(name, id) {
@@ -44,12 +45,16 @@ class EventRecommender {
 
     deleteUser(userId) {
     // Deletes a User from the system
-        this.users.splice(this.findUserById(userId), 1);
+        let usersRemaining = this.users.filter((user) => {return user.id !== userId
+        });
+        this.users = usersRemaining;
     }
    
     deleteEvent(eventId) {
     // Deletes the Event from the system
-        this.users.splice(this.events.indexOf(eventId), 1);
+        let eventsRemaining = this.events.filter((event) => {return event.id !== eventId
+        });
+        this.events = eventsRemaining;
     }
     
     findUserById (userId) {
