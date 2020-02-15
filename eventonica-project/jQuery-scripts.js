@@ -25,8 +25,8 @@ $(document).ready( () => {
     function displayEvents() {
       let defaultEvent = "";
         for (let event of eventRecommender.events) {
-          defaultEvent += `<li>${event.name + " | " + event.category + 
-          " | " + event.date + " | " + event.id}</li>`;
+          defaultEvent += `<li>${event.name}  |   ${event.category} 
+           |  ${event.date}  |   ${event.id}</li>`;
       }
       $("#all-events").html(defaultEvent);
   }
@@ -55,7 +55,10 @@ $("#add-event").submit((event) => {
   $("#add-event").trigger("reset");
 });
 
+                          // Delete Users & Events
+// Users
 
+// Events
 
                       // NavBar usability
     let mainNav = document.getElementById('js-menu');
