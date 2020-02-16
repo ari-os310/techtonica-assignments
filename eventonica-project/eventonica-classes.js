@@ -42,19 +42,25 @@ class EventRecommender {
         user.personalEvents.push(events);
     }
     
-
+     /* FILTER FUNCTION DELETES NEW USER BY ID ? BUT WILL NOT WORK ON DEFAULT USERS
+     SPLICE FUNCTION MAKES JASINE TEST PASS,BUT REMOVES THE FIRST USER IN LIST ALWAYS
+                SUBMIT BUTTON WILL DELETE EVEN IF NOTHING IS INPUT*/
     deleteUser(userId) {
     // Deletes a User from the system
-        let usersRemaining = this.users.filter((user) => {return user.id !== userId
+        this.users  = this.users.filter((user) => {return user.id !== userId
         });
-        this.users = usersRemaining;
+        // this.users.splice(this.findUserById(userId[userId]), 1);
+        
     }
    
+    /* FILTER FUNCTION DELETES NEW EVENT BY ID ? BUT WILL NOT WORK ON DEFAULT EVENTS
+    SPLICE FUNCTION MAKES JASINE TEST PASS,BUT REMOVES THE FIRST EVENT IN LIST ALWAYS*/
     deleteEvent(eventId) {
     // Deletes the Event from the system
-        let eventsRemaining = this.events.filter((event) => {return event.id !== eventId
-        });
-        this.events = eventsRemaining;
+        // this.events = this.events.filter((event) => {return event.id !== eventId
+        // });
+
+        this.events.splice(this.findUserById(eventId), 1);
     }
     
     findUserById (userId) {
@@ -72,7 +78,7 @@ class EventRecommender {
     
     findEventsByCategory(category){
     // Returns all events in a given category
-        return this.events.filter((categories) => categories.category === category);
+        return this.events.filter((event) => event.category === category);
     }
 }
 

@@ -76,7 +76,25 @@ $("#delete-event").submit((event) => {
     $("#delete-event").trigger("reset");
 });
 
-                          // SEARCH && SAVE 
+                          // DISPLAY SEARCHED EVENTS
+  function displayEventsByDate(searchDate) {
+    let eventsByDate = $('<ul>');
+        for (let i=0; i<searchDate.length; i++) {
+        // for (let event of searchDate){
+            eventsByDate.append("<li>" + searchDate[i].name + "</li>");
+        }
+          $("#search-date-results").html(eventsByDate);
+    }
+
+
+                          // SEARCH EVENTS
+  $("#date-search").submit((event) => {
+    event.preventDefault();
+      let query = $("#date-search-id").val();
+      let searchDate = er.findEventsByDate(query);
+    displayEventsByDate(searchDate);
+    });
+  
 
 
                       // NavBar usability
