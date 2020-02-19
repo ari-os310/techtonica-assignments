@@ -95,6 +95,37 @@ $("#delete-event").submit((event) => {
     displayEventsByDate(searchDate);
     });
   
+                              // API IMPLEMENTATION
+
+    let keyword = "Rap";
+                    
+  $.ajax({
+  type:"GET",
+  url:`https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&keyword=${keyword}`,
+  async:true,
+  dataType: "json",
+  success: function(json) {
+    let events = json._embedded.events;
+    let name = events[0].name;
+    let date = events[0].dates.start.localDate;
+    let category = events[0].classifications[0].segment.name;
+    let id = events.id;
+
+            // to revisit later
+    // let time = events[0].dates.start.localTime;
+
+    console.log(events[0]); 
+              // Parse the response.
+              // Do other things.
+           },
+  error: function(xhr, status, err) {
+              // This time, we do not end up here!
+           }
+});
+
+
+
+
 
 
                       // NavBar usability

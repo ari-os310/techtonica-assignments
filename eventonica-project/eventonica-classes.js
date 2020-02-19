@@ -73,7 +73,8 @@ class EventRecommender {
 
     findEventsByDate(date){
     // Returns all events on a given date
-        return this.events.filter((event) => event.date === date);
+      let formatDate = new Date (date);
+        return this.events.filter((event) => event.date === formatDate);
         }
     
     findEventsByCategory(category){
