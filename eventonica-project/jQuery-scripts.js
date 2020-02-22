@@ -1,5 +1,6 @@
 $(document).ready( () => {
     const er = new EventRecommender(); 
+    const APIKey = '7elxdku9GGG5k8j0Xm8KWdANDgecHMV0';
     // Your code here
                           // Default Users
     er.addUser("XELA", 323);
@@ -8,6 +9,8 @@ $(document).ready( () => {
     
                         // Default Events
     er.addEvent("Emo Fantasy", "2020-2-20", "Music", 022);
+    er.addEvent("La Sad Gurl", "2020-2-22", "Comedy", 666);
+    er.addEvent("For the Homie", "2020-2-23", "Ceremony", 888);
 
                         // display Users && Events
             displayUsers();
@@ -91,42 +94,45 @@ $("#delete-event").submit((event) => {
   $("#date-search").submit((event) => {
     event.preventDefault();
       let query = $("#date-search-id").val();
-      let searchDate = er.findEventsByDate(query);
-    displayEventsByDate(searchDate);
+      let dateResults = er.findEventsByDate(query);
+        displayEventsByDate(dateResults);
     });
   
                               // API IMPLEMENTATION
 
-    let keyword = "Rap";
-                    
+    // let keyword = "Rap";
+
+  $("#ticket-master-search").submit((event) => {
+    event.preventDefault();
+    let keyword = $("#keyword-search").val();
   $.ajax({
   type:"GET",
   url:`https://app.ticketmaster.com/discovery/v2/events?apikey=7elxdku9GGG5k8j0Xm8KWdANDgecHMV0&keyword=${keyword}`,
   async:true,
   dataType: "json",
-  success: function(json) {
+  success: ((json) => {
+    console.log(json);
     let events = json._embedded.events;
     let name = events[0].name;
     let date = events[0].dates.start.localDate;
     let category = events[0].classifications[0].segment.name;
     let id = events.id;
-
-            // to revisit later
-    // let time = events[0].dates.start.localTime;
-
     console.log(events[0]); 
-              // Parse the response.
-              // Do other things.
-           },
+   
+                          //Display TicketMaster Functionality
+   
+ $("#keyword-results").html(name);
+ // Parse the response.
+   er.addEvent( name, date, category, id );
+     displayEvents();
+      // console.log("Lo hecimos??");
+  }),
   error: function(xhr, status, err) {
               // This time, we do not end up here!
            }
-});
-
-
-
-
-
+   })
+  })
+// });
 
                       // NavBar usability
     let mainNav = document.getElementById('js-menu');

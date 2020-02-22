@@ -1,9 +1,10 @@
 <html>
 <head>
-    <script src="eventonica-classes.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="jQuery-scripts.js"></script>
+
     <link href="index.css" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="eventonica-classes.js"></script>
+    <script src="jQuery-scripts.js"></script>
     <script defer="" src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" 
     integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" 
     crossorigin="anonymous"></script>
@@ -168,19 +169,19 @@
 
 <div>
 <h2>Import Events from Ticketmaster</h2>
-<form id="category-search">
-    <label>Event Keyword:</label>
+<form id="ticket-master-search">
+    <label>Search Keyword:</label>
     <input type="text" id="keyword-search">
     <br/>
-    <input type="submit">
+    <input type="submit" value="Search">
 </form>
 <h4>Results:</h4>
-<ol>
+<ol id = "keyword-results">
     <!-- Use jQuery to add search results here-->
 </ol>
 
-<input type= "submit" 
-value="Import first event from Ticketmaster" id="Ticketmaster-button">
+<!-- <input type= "submit" 
+value="Import first event from ticketmaster" id="ticketmaster-button"> -->
 <!-- </input>  -->
 </div>
 </main>
