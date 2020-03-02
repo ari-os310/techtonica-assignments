@@ -66,7 +66,43 @@ app
     else res.status(200).send(`Event :  ${deletedEvent} deleted successfully`);
 });
 
+// W. Keyword Param
+app 
+    .route('/events:keyword')
 
+    .get((req, res) => {
+    res.status(200).send(req.params.keyword);
+ });
+
+// W. Category Param
+app 
+    .route('/events:category')
+
+    .get((req, res) => {
+    let category = req.params.category;
+    let eventsByCategory = er.findEventsByCategory(category);
+    if (eventsByCategory.length > 0){
+    res.status(200).send(eventsByCategory);
+    } else {
+        res.status(400).send(`There are no current events under ${category}.` )
+    }
+ });
+
+ // W. Date Param
+app 
+    .route('/events:date')
+
+    .get((req, res) => {
+    let date = req.params.date;
+    let eventsByDate = er.findEventsByDate(date);
+    if (eventsByDate.length > 0){
+    res.status(200).send(eventsByDate);
+    } else {
+        res.status(400).send(`There are no current events for ${date}.` )
+    }
+    });
+
+    
 // USERS
 
 app
@@ -111,6 +147,8 @@ app
     if (!deletedUser) res.status(404).send("ERROR: User with that ID does not exist.");
     else res.status(200).send(`User :  ${deletedUser} deleted successfully`);
 });
+
+
 
 // app.get('/api/courses', (req, res) => {
 //     res.send([1,2,3]);

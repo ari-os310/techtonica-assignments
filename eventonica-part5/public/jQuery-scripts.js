@@ -16,67 +16,114 @@ $(document).ready( () => {
             displayUsers();
             
     function displayUsers() {
-      let defaultUser = "";
-        for (let user of er.users) {
-          defaultUser += `<li>${user.name}</li>`;
-      }
-      $("#all-users").html(defaultUser);
-    }
+      let req = $.ajax( {
+        method : "GET",
+        url: '/users'
+      });
 
+      req.done (() => {
+        let defaultUser = "";
+         for (let user of er.users) {
+            defaultUser += `<li>${user.name}</li>`;
+        }
+        $("#all-users").html(defaultUser);
+      })
+    }
+    
             displayEvents();
 
     function displayEvents() {
-      let defaultEvent = "";
+      let req = $.ajax( {
+        method : "GET",
+        url: '/events'
+      });
+
+      req.done (() => {
+        let defaultEvent = "";
         for (let event of er.events) {
           defaultEvent += `<li>${event.name}  |   ${event.category} 
            |  ${event.date}  |   ${event.id}</li>`;
       }
       $("#all-events").html(defaultEvent);
-  }
+      })
+    }
   
-
                       // Adding Users & Events
 // Users
 $("#add-user").submit((event) => {
     event.preventDefault();
-      let id = $("#add-user-id").val();
       let name = $("#add-user-name").val();
-    er.addUser(name, id);
-          displayUsers();
+      let id = $("#add-user-id").val();
+
+      let req = $.ajax( {
+        method : "POST",
+        url: '/users',
+        data: {'name': name, 'id': id},
+        contentType: 'application/x-www-form-urlencoded'
+      });     
+    
+      req.done(() => console.log (`${name} has been added. `))
+      req.fail(() => console.log (`${name} could not be added at this time.`))
+          
+        displayUsers();
 $("#add-user").trigger("reset");
     });
  
 // Events
 $("#add-event").submit((event) => {
     event.preventDefault();
-      let id = $("#add-event-id").val();
       let name = $("#add-event-name").val();
       let date = $("#add-event-date").val();
       let category = $("#add-event-category").val();
-    er.addEvent(name, date, category, id);
-    displayEvents();
+      let id = $("#add-event-id").val();
+
+      let req = $.ajax({
+        method : "POST",
+        url: '/events',
+        data: {'name': name, 'date': date, 'category': category, 'id': id},
+        contentType: 'application/x-www-form-urlencoded'
+      }); 
+      
+      req.done(() => console.log (`${name} has been added. `))
+      req.fail(() => console.log (`${name} could not be added at this time.`))
+    
+      displayEvents();
   $("#add-event").trigger("reset");
 });
 
                           // Delete Users & Events
 // Users
-$("#delete-user").submit((event) => {
+$("#delete-user").submit((user) => {
   event.preventDefault();
     let userId = $("#delete-user-id").val();
-      er.deleteUser(userId);
-  
-  displayUsers();
-    $("#delete-user").trigger("reset");
+    let req = $.ajax({
+      method : "DELETE",
+      url: '/users:id',
+      data: {'id': userId}
+    });
+
+    req.done(() => console.log (`${user.name} has been removed. `))
+    req.fail(() => console.log (`${user.name} could not be deleted at this time.`))
+
+    displayUsers();
+  $("#delete-user").trigger("reset");
 });
 
 // Events
 $("#delete-event").submit((event) => {
   event.preventDefault();
     let eventId = $("#delete-event-id").val();
-      er.deleteEvent(eventId);
-  
-  displayEvents();
-    $("#delete-event").trigger("reset");
+    let req = $.ajax({
+      method : "DELETE",
+      url: '/events:id',
+      data: {'id': eventId}
+    });
+
+    req.done(() => console.log (`${event.name} has been removed. `))
+    req.fail(() => console.log (`${event.name} could not be deleted at this time.`))
+
+    displayEvents();
+  $("#delete-event").trigger("reset");
 });
 
                           // DISPLAY SEARCHED EVENTS
@@ -94,8 +141,16 @@ $("#delete-event").submit((event) => {
   $("#date-search").submit((event) => {
     event.preventDefault();
       let query = $("#date-search-id").val();
-      let dateResults = er.findEventsByDate(query);
-        displayEventsByDate(dateResults);
+      let req = $.ajax({
+        method : "GET",
+        url: '/events:date',
+        data: {'date': query}
+      });
+
+      req.done(() => console.log (`The following events match ${query} search.` ))
+      req.fail(() => console.log (`No such events exist for ${query}.`))
+      
+      displayEventsByDate();
     });
   
                               // API IMPLEMENTATION
