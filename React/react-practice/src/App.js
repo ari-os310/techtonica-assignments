@@ -20,6 +20,10 @@ class App extends Component {
       overCharacterLimit = maxCharacters - currentCharacterCount; {
       }
 
+      date (){
+        
+      }
+
     return (
       <div>
         <h1>Fake Twitter</h1>
@@ -51,7 +55,13 @@ class App extends Component {
           <br/>
           
           <input type="submit" value="Submit"></input>
-        
+
+          <ul>
+            {/* figuring out how to add and display lists in react */}
+          </ul>
+
+
+
         </form>
       </div>
     );
