@@ -1,0 +1,6 @@
+"id","sighting_time","individual_spotted","location_spotted","healthy_or_not","email_of_reporter"
+1,"2020-03-12 11:44:52.134125-07","sea lion","ocean",TRUE,"kyle@yahoo.com"
+2,"2020-03-12 11:44:52.134125-07","orangutan","tree",FALSE,"jenna@hotmail.com"
+3,"2020-03-12 11:44:52.134125-07","orangutan","rainforest",TRUE,"jone@techtonica.org"
+4,"2020-03-12 11:44:52.134125-07","beluga","ocean",TRUE,"henry@ucsc.edu"
+5,"2020-03-12 11:44:52.134125-07","beluga","ocean",TRUE,"chavela@berkeley.edu"
