@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+const maxCharacters = 100;
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { message: '' };
+    this.state = { 
+      username: 'user1',
+      message: '',
+      chirp: [] 
+    };
   }
 
   handleMessageInput = event => {
@@ -12,24 +20,35 @@ class App extends Component {
     });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.state.message.length <= maxCharacters) {
+    let newTweet = {
+      message: this.state.message,
+      username: this.state.username,
+      timestamp: new Date()
+    }
+    this.setState({
+      tweets: this.state.tweets.concat([newTweet]),
+      message: ''
+    })
+  }
+}
+
+
   render() {
     const 
       message = this.state.message,
-      maxCharacters = 100,
+      // maxCharacters = 100,
       currentCharacterCount = message.length,
-      overCharacterLimit = maxCharacters - currentCharacterCount; {
-      }
-
-      date (){
-        
-      }
+      overCharacterLimit = maxCharacters - currentCharacterCount; 
 
     return (
       <div>
         <h1>Fake Twitter</h1>
 
         <label for="entryform">Tweet Tweet Birdy</label>
-        <form name="entryform" id="entry-form">
+        <form name="entryform" id="entry-form" >
           <select name="usernames" id="usernames">
             <option value="user1">ARRM</option>
             <option value="user2">XELA</option>
@@ -41,7 +60,9 @@ class App extends Component {
           
           <textarea 
             value={message} 
-            onChange={this.handleMessageInput}>
+            onChange={this.handleMessageInput}
+            // onSubmit = {this.handleSubmit}
+            >
           </textarea>
           
           <br />
@@ -49,19 +70,22 @@ class App extends Component {
             Character Count: {overCharacterLimit}
             {currentCharacterCount <= maxCharacters && currentCharacterCount >= 0
               ? ' Dale Gas!'
-              : <span style={{color: "red"}}> ' Over Character Limit!'</span>
+              : <span style={{color: "red"}}> Over Character Limit!</span>
               }
           </span>
           <br/>
           
-          <input type="submit" value="Submit"></input>
+          <input 
+            type="submit" 
+            value="Submit" 
+            onClick = {this.handleSubmit}>
+          </input>
 
           <ul>
-            {/* figuring out how to add and display lists in react */}
+            {/* {submittedMessage} */}
           </ul>
-
-
-
+          {/* document.getElementById(''); */}
+        
         </form>
       </div>
     );
@@ -69,3 +93,4 @@ class App extends Component {
 }
 
 export default App;
+
