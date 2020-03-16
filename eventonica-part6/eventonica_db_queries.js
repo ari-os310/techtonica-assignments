@@ -9,7 +9,7 @@ const pool = new Pool({
 class EventRecommender {
   // USERS
   getUsers = (req, res) => {
-    pool.query("SELECT * FROM users ORDER BY id ASC", (error, results) => {
+    pool.query("SELECT * FROM users ORDER BY id ASC LIMIT 5", (error, results) => {
       if (error) {
         throw error;
       }
@@ -86,7 +86,7 @@ class EventRecommender {
 
   //   EVENTS
   getEvents = (req, res) => {
-    pool.query("SELECT * FROM events ORDER BY id ASC", (error, results) => {
+    pool.query("SELECT * FROM events ORDER BY id ASC LIMIT 5", (error, results) => {
       if (error) {
         throw error;
       }
